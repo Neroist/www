@@ -29,7 +29,7 @@ if($d){
 }
 $s = mysqli_query($d,"SELECT * FROM secure_login.Users;");
 $r = mysqli_fetch_row($s);
-echo($r[0]);
+echo($r[0]);echo($r[1]);
 
 
 ?>
