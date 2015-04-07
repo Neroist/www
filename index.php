@@ -5,17 +5,14 @@
 <body>
 
 <p>
-<?php echo 'Hello World'; ?>
+<?php echo 'Hello World<br/>'; ?>
 <a href=next.php>click here</a>
 </p>
 
 <p>
-<?php $d = "tutak"; ?>
-<?php echo $d; ?>
-
 <?php
 session_start();
-$username = "tutmeistro";
+$username = "username";
 $_SESSION['login_user']= $username;  // Initializing Session with value of PHP Variable
 echo $_SESSION['login_user'];?>
 </p>
@@ -27,11 +24,13 @@ echo $_SESSION['login_user'];?>
 if($d){
 	echo "macaroni<br/>";
 }
-$s = mysqli_query($d,"SELECT * FROM secure_login.Users;");
+$s = mysqli_query($d,"SELECT * FROM secure_login.tut;");
 $r = mysqli_fetch_row($s);
-echo($r[0]);echo($r[1]);
-echo($r[2]);
-
+if($r[0]){
+	echo "tutak";
+}
+echo "tut";
+tutak("hej");
 
 ?>
 

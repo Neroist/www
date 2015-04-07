@@ -4,15 +4,20 @@ if (!$link) {
 	die('Could not connect to MySQL: ' . mysqli_error($link)); 
 } 
 echo 'Connection OK'; #mysqli_close($link);
-$sql = "CREATE TABLE secure_login.Users (
-	userId int,
+
+$dbase = "CREATE DATABASE d2d;";
+mysqli_query($link,$dbase);
+
+
+$usertable = "CREATE TABLE secure_login.Users (
 	email varchar(40) PRIMARY KEY,
 	password varchar(15));";
 
-if(mysqli_query($link, $sql)){
-	echo "tut";
-}else{
-	echo "macarena";
+function tutak($hej){
+
+	echo $hej;
 }
+
+
 
 ?>
