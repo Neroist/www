@@ -14,13 +14,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    if (empty($_POST["email"])) {
      $nameErr = "Email is required";
    } else {
-     $name = $_POST["email"];
+     $email = $_POST["email"];
    }
    
    if (empty($_POST["password"])) {
      $emailErr = "Password is required";
    } else {
-     $email = $_POST["password"];
+     $password = $_POST["password"];
    }
      
 }
