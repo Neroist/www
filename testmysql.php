@@ -14,6 +14,9 @@ $usertable = "CREATE TABLE d2d.Users (
 	password varchar(15));";
 mysqli_query($link,$usertable);
 
+//$buyertable = "CREATE TABLE d2d.Buyers (
+//	)
+$slask = 3;
 
 
 
