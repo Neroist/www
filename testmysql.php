@@ -14,13 +14,53 @@ $usertable = "CREATE TABLE d2d.Users (
 	password varchar(15));";
 mysqli_query($link,$usertable);
 
-//$buyertable = "CREATE TABLE d2d.Buyers (
-//	)
-$slask = 3;
+$sellertable = "CREATE TABLE d2d.Sellers (
+	email varchar(40) PRIMARY KEY,
+	address varchar(80),
+	bankaccount varchar(14),
+	bankrouting varchar(6));";
+mysqli_query($link,$sellertable);
 
-$contracttable = "CREATE TABLE d2d.Contract (
-	)"
+$buyertable = "CREATE TABLE d2d.Buyers (
+	email varchar(40) PRIMARY KEY,
+	creditcard char(16),
+	address varchar(80));";
+mysqli_query($link,$buyertable);
 
+$contracttable = "CREATE TABLE d2d.Contracts (
+	contractID char(12) PRIMARY KEY,
+	sEmail varchar(40),
+	bEmail varchar(40));";
+mysqli_query($link,$contracttable);
 
+$packagetable = "CREATE TABLE d2d.Packages (
+	packageID char(14) PRIMARY KEY,
+	contractID char(12),
+	contents varchar(40),
+	height int,
+	width int,
+	length int,
+	weight int,
+	price int);";
+mysqli_query($link,$packagetable);
+
+$drivertable = "CREATE TABLE d2d.Drivers (
+	driverID char(10) PRIMARY KEY,
+	bankacc varchar(14),
+	bankrout varchar(6));";
+mysqli_query($link,$drivertable);
+
+$statustable = "CREATE TABLE d2d.contractStatus (
+	contractID char(12) PRIMARY KEY,
+	opened datetime,
+	signed datetime,
+	paidFor datetime,
+	dAssigned datetime,
+	driverID char(10),
+	pickedUp datetime,
+	droppedOff datetime,
+	satisfaction int(1),
+	settled datetime);";
+mysqli_query($link,$statustable);
 
 ?>
