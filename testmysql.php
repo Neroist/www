@@ -9,14 +9,11 @@ $dbase = "CREATE DATABASE d2d;";
 mysqli_query($link,$dbase);
 
 
-$usertable = "CREATE TABLE secure_login.Users (
+$usertable = "CREATE TABLE d2d.Users (
 	email varchar(40) PRIMARY KEY,
 	password varchar(15));";
+mysqli_query($link,$usertable);
 
-function tutak($hej){
-
-	echo $hej;
-}
 
 
 
