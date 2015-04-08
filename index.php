@@ -1,40 +1,53 @@
+<!DOCTYPE HTML> 
 <html>
 <head>
-<title>D2D.se - Your safe middleman</title>
+<title>d2d</title>
 </head>
-<body>
+<body> 
 
-<p>
-<?php echo 'Hello World<br/>'; ?>
-<a href=next.php>click here</a>
-</p>
-
-<p>
 <?php
-session_start();
-$username = "username";
-$_SESSION['login_user']= $username;  // Initializing Session with value of PHP Variable
-echo $_SESSION['login_user'];?>
-</p>
+// define variables and set to empty values
+$emailErr=$passErr = "";
+$email=$password="";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   if (empty($_POST["email"])) {
+     $nameErr = "Email is required";
+   } else {
+     $name = $_POST["email"];
+   }
+   
+   if (empty($_POST["password"])) {
+     $emailErr = "Password is required";
+   } else {
+     $email = $_POST["password"];
+   }
+     
+}
 
-<p>
-<h1>sql har</h1>
-<?php $d= mysqli_connect("localhost", "root", "");
-if($d){
-	echo "macaroni<br/>";
-}
-$s = mysqli_query($d,"SELECT * FROM secure_login.tut;");
-$r = mysqli_fetch_row($s);
-if($r[0]){
-	echo "tutak";
-}
 echo "tut";
-echo "har ar andringar";
-
 ?>
 
-</p>
+<h2>Registration</h2>
+<p><span class="error">* required field.</span></p>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+   E-mail: <input type="text" name="email">
+   <span class="error">* <?php echo $emailErr;?></span>
+   <br><br>
+   Password: <input type="password" name="password"></input>
+   <span class="error">* <?php echo $passErr;?></span>
+   <br><br>
+   <input type="submit" name="submit" value="Submit"> 
+</form>
+
+<?php
+echo "<h2>Your Input:</h2>";
+echo $email;
+echo "<br>";
+echo $password;
+echo "<br>";
+
+?>
 
 </body>
 </html>
