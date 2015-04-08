@@ -18,6 +18,9 @@ mysqli_query($link,$usertable);
 //	)
 $slask = 3;
 
+$contracttable = "CREATE TABLE d2d.Contract (
+	)"
+
 
 
 ?>
