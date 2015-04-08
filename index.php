@@ -30,7 +30,7 @@ if($r[0]){
 	echo "tutak";
 }
 echo "tut";
-
+echo "har ar andringar";
 
 ?>
 
