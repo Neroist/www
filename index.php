@@ -21,9 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      $emailErr = "Password is required";
    } else {
      $password = $_POST["password"];
+
    }
+
      
 }
+
 
 echo "tut";
 ?>
@@ -46,7 +49,6 @@ echo $email;
 echo "<br>";
 echo $password;
 echo "<br>";
-
 ?>
 
 </body>
