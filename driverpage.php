@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-Form där man ger sitt id
+Create driverID
 </p>
 
 
@@ -41,6 +41,7 @@ Form där man ger sitt id
 	<p>
 		Back to user page?
 	</p>
+	<a href="index.php">Back to main page</a>
 </div>
 
 </body>
