@@ -24,17 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
    }
 
-     
 }
 
 
 echo "tut";
 ?>
 
-<h2>Registration</h2>
+<h2>LOGGA IN HÄR OM DU ÄR EN ANVÄNDARE</h2>
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-   E-mail: <input type="text" name="email">
+   E-mail: <input type="email" name="email">
    <span class="error">* <?php echo $emailErr;?></span>
    <br><br>
    Password: <input type="password" name="password"></input>
@@ -42,7 +41,7 @@ echo "tut";
    <br><br>
    <input type="submit" name="submit" value="Submit"> 
 </form>
-
+<p>
 <?php
 echo "<h2>Your Input:</h2>";
 echo $email;
@@ -50,6 +49,12 @@ echo "<br>";
 echo $password;
 echo "<br>";
 ?>
+</p>
+<p>
+	<h2>Titta här om du är en drajver</h2>
+	<a href="driverpage.php">Click</a>
+</p>
+
 
 </body>
 </html>
