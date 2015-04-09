@@ -1,7 +1,9 @@
 <!DOCTYPE HTML> 
 <html>
 <head>
-
+<?php 
+$link = mysqli_connect("localhost", "root","");
+?>
 <title>d2d</title>
 </head>
 <body style="background-color:#abcdef"> 
@@ -9,16 +11,20 @@
 $regemailErr=$regpassErr = "";
 $regemail=$regpassword="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if ($ema=empty($_POST["regemail"])) {
-     $regemailErr = "Email is required";
-   } else {
-     $regemail = $_POST["regemail"];
-   }
-   
-   if ($pas=empty($_POST["regpassword"])) {
-     $regpassErr = "Password is required";
-   } else {
-     $regpassword = $_POST["regpassword"];
+  $regema=empty($_POST["regemail"]);
+  $regpas=empty($_POST["regpassword"]);
+  if($regema or $regpas){
+     if ($regema) {
+       $regemailErr = "Email is required";
+     } else {
+       $regemail = $_POST["regemail"];
+     }
+     
+     if ($regpas) {
+       $regpassErr = "Password is required";
+     } else {
+       $regpassword = $_POST["regpassword"];
+     }
    }
 }
 ?>
@@ -47,22 +53,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 $emailErr=$passErr = "";
 $email=$password="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if ($ema=empty($_POST["email"])) {
+  $ema=empty($_POST["email"]);
+  $pas=empty($_POST["password"]);
+  if($ema or $pas){
+   if ($ema) {
      $emailErr = "Email is required";
    } else {
      $email = $_POST["email"];
    }
    
-   if ($pas=empty($_POST["password"])) {
+   if ($pas) {
      $passErr = "Password is required";
    } else {
      $password = $_POST["password"];
    }
+   }
+   $loginquery = "SELECT * FROM d2d.Users WHERE email = $email and password=$password;";
+   $logincheck = mysqli_query($link, $loginquery);
+   if($logincheck){
+    echo "marhasdasd";
+   }else{
+    echo "slaskmask";
+   }
+   echo $email;
+   echo $password;
+
 }
 ?>
 <p>
   <h2>Redan registrerad? Titta här.</h2>
-  <form method="post" action="userpage.php"> 
+  <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
    E-mail: <input type="email" name="email">
    <span class="error">* <?php echo $emailErr;?></span>
    <br><br>
