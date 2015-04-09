@@ -1,5 +1,5 @@
 <html>
-<title>d2d Users page</title>
+<title>d2d Sellers page</title>
 <body>
 
 <p>
