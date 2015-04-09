@@ -18,19 +18,23 @@ $sellertable = "CREATE TABLE d2d.Sellers (
 	email varchar(40) PRIMARY KEY,
 	address varchar(80),
 	bankaccount varchar(14),
-	bankrouting varchar(6));";
+	bankrouting varchar(6),
+	FOREIGN KEY (email) REFERENCES Users.email);";
 mysqli_query($link,$sellertable);
 
 $buyertable = "CREATE TABLE d2d.Buyers (
 	email varchar(40) PRIMARY KEY,
 	creditcard char(16),
-	address varchar(80));";
+	address varchar(80),
+	FOREIGN KEY (email) REFERENCES Users.email));";
 mysqli_query($link,$buyertable);
 
 $contracttable = "CREATE TABLE d2d.Contracts (
 	contractID char(12) PRIMARY KEY,
 	sEmail varchar(40),
-	bEmail varchar(40));";
+	bEmail varchar(40),
+	FOREIGN KEY (sEmail) REFERENCES Sellers.email),
+	FOREIGN KEY (bEmail) REFERENCES Buyers.email));";
 mysqli_query($link,$contracttable);
 
 $packagetable = "CREATE TABLE d2d.Packages (
@@ -41,7 +45,8 @@ $packagetable = "CREATE TABLE d2d.Packages (
 	width int,
 	length int,
 	weight int,
-	price int);";
+	price int,
+	FOREIGN KEY (contractID) REFERENCES Contracts.contractID));";
 mysqli_query($link,$packagetable);
 
 $drivertable = "CREATE TABLE d2d.Drivers (
@@ -60,7 +65,8 @@ $statustable = "CREATE TABLE d2d.contractStatus (
 	pickedUp datetime,
 	droppedOff datetime,
 	satisfaction int(1),
-	settled datetime);";
+	settled datetime,
+	FOREIGN KEY (contractID) REFERENCES Contracts.contractID);";
 mysqli_query($link,$statustable);
 
 ?>
