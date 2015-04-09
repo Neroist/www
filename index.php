@@ -6,22 +6,24 @@
 <body> 
 
 <?php
-// define variables and set to empty values
 $emailErr=$passErr = "";
 $email=$password="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["email"])) {
+   if ($ema=empty($_POST["email"])) {
      $emailErr = "Email is required";
    } else {
      $email = $_POST["email"];
    }
    
-   if (empty($_POST["password"])) {
+   if ($pas=empty($_POST["password"])) {
      $passErr = "Password is required";
    } else {
      $password = $_POST["password"];
 
+   }
+   if(!$ema and !$pas){
+    header("Location: userpage.php");
    }
 
 }
