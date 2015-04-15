@@ -30,7 +30,7 @@ $buyertable = "CREATE TABLE d2d.Buyers (
 mysqli_query($link,$buyertable);
 
 $contracttable = "CREATE TABLE d2d.Contracts (
-	contractID char(12) PRIMARY KEY,
+	contractID int PRIMARY KEY,
 	sEmail varchar(40),
 	bEmail varchar(40),
 	FOREIGN KEY (sEmail) REFERENCES Sellers(email), #Sells
@@ -38,8 +38,8 @@ $contracttable = "CREATE TABLE d2d.Contracts (
 mysqli_query($link,$contracttable);
 
 $packagetable = "CREATE TABLE d2d.Packages (
-	packageID char(14) PRIMARY KEY,
-	contractID char(12),
+	packageID int PRIMARY KEY,
+	contractID int,
 	contents varchar(40),
 	height int,
 	width int,
@@ -50,18 +50,18 @@ $packagetable = "CREATE TABLE d2d.Packages (
 mysqli_query($link,$packagetable);
 
 $drivertable = "CREATE TABLE d2d.Drivers (
-	driverID char(10) PRIMARY KEY,
+	driverID int PRIMARY KEY,
 	bankacc varchar(14),
 	bankrout varchar(6));";
 mysqli_query($link,$drivertable);
 
 $statustable = "CREATE TABLE d2d.ContractStatus (
-	contractID char(12) PRIMARY KEY,
+	contractID int PRIMARY KEY,
 	opened datetime,
 	signed datetime,
 	paidFor datetime,
 	dAssigned datetime,
-	driverID char(10), #Foreign key? #HasContract, Nullproblem
+	driverID int, #Foreign key? #HasContract, Nullproblem
 	pickedUp datetime,
 	droppedOff datetime,
 	satisfaction int(1),
@@ -87,14 +87,14 @@ mysqli_query($link,$statustable);
 // $add = "INSERT INTO d2d.Buyers (email, creditcard, address) VALUES ('tut@slask.se', '0987654321123456','gatanmanborpå 45 staden 68 tr');";
 // mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Contracts (contractID, sEmail, bEmail) VALUES ('123456789012', 'apa@slask.se','tut@slask.se');";
+// $add = "INSERT INTO d2d.Contracts (contractID, sEmail, bEmail) VALUES ('1', 'apa@slask.se','tut@slask.se');";
 // mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Drivers (driverID, bankacc, bankrout) VALUES ('abcdef12345','banka1234','rout44');";
+// $add = "INSERT INTO d2d.Drivers (driverID, bankacc, bankrout) VALUES ('1','banka1234','rout44');";
 // mysqli_query($link,$add);
 
 // $add = "INSERT INTO d2d.ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) 
-// 		VALUES ('123456789012',Null,Null,Null,Null,'abcdef12345',Null,Null,Null,Null);";
+// 		VALUES ('1',Null,Null,Null,Null,'1',Null,Null,Null,Null);";
 // mysqli_query($link,$add);
 
 ?>
