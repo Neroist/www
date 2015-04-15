@@ -1,46 +1,40 @@
 <html>
+<head>
 <title>d2d Driver page</title>
+</head>
 <body>
 
-<p>
-<h3>Enter here:</h3>
-
-<?php//define variables...
-$driverErr = $driverID = "";
+<?php
+$driverErr=$driverID="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["name"])) {
+  if ($ema=empty($_POST["driverID"])) {
+   #if empty($_POST["name"]) {
     $driverErr = "DriverID is required";
   } else {
-    $driverID = $_POST["name"];
-  
-}?>
+    $driverID = $_POST["name"];}
+  }
+?>
+
+<h2>Enter here:</h2>
 
 
-<!--<p><span class="error">* required field.</span></p>-->
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-   DriverID: <input type="text" name="driverID">
-<!--   <span class="error">* <?php echo $driverErr;?></span> -->
-   <br><br>
+  DriverID: <input type="text" name="driverID"></input>
+  <span class="error">* <?php echo $driverErr;?></span>
+  <br><br>
 
-   <input type="submit" name="submit" value="Submit"> 
+  <input type="submit" name="submit" value="Submit"> 
 </form>
+
 <p>
 
-
-
-
-
-
-Create driverID
+<a href="createDriverID.php">Create driverID</a>
 </p>
 
 
 <div>
-	<p>
-		Back to user page?
-	</p>
 	<a href="index.php">Back to main page</a>
 </div>
 
