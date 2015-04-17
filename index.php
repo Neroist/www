@@ -2,7 +2,7 @@
 <html>
 <head>
 <?php 
-$link = mysqli_connect("localhost", "root","");
+include("header.php");
 ?>
 <title>d2d</title>
 </head>
