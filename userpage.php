@@ -2,37 +2,34 @@
 <title>d2d Users page</title>
 <body>
 <?php  
-
-$link = mysqli_connect("localhost", "root", "");
-$email=$_POST["email"];
-$pass =$_POST["password"];
-$check_login_query = "SELECT email, password FROM d2d.Users WHERE email=$email and password=$pass";
-$result = mysqli_query($link, $check_login_query);
-
-if($result){
-	echo "mariachio";
-}else{
-	echo "tutbandet";
+include("header.php");
+if(!$_SESSION["useremail"]){
+	header("Location: index.php");
 }
+$useremail=$_SESSION["useremail"];
+echo "You are logged in as $useremail";
+
 
 ?>
 
 
 <p>
 <h3>Are you a seller?</h3>
-"Link here"
+<a href="sellerpage.php">Here are your active sales</a>
 
 </p>
 
 
 <p>
 <h3>Are you a buyer?</h3>
-"Link here"
+<a href="buyerpage.php">Here are your active purchases</a>
 
 </p>
 
 <p>
-Logout options here
+<h3>Logout </h3>
+<a href="index.php">Click here</a>
+
 </p>
 
 
