@@ -12,7 +12,7 @@ include("header.php");
       <a href="registerpage.php">Clicky</a>
   </p>
   <?php
-  
+    $_SESSION["useremail"] = "";
     $emailErr=$passErr = "";
     $email=$password="";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,7 +1,10 @@
 <?php 
 
 $link = mysqli_connect("localhost","root","");
-session_start();
+if(!isset($_SESSION)) 
+    { 
+        session_start(); 
+    } 
 
 
  ?>

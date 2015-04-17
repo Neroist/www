@@ -3,8 +3,11 @@
 <body>
 <?php  
 include("header.php");
+if(!$_SESSION["useremail"]){
+	header("Location: index.php");
+}
 $useremail=$_SESSION["useremail"];
-echo "Your useremail is $useremail";
+echo "You are logged in as $useremail";
 
 
 ?>
@@ -12,19 +15,21 @@ echo "Your useremail is $useremail";
 
 <p>
 <h3>Are you a seller?</h3>
-"Link here"
+<a href="sellerpage.php">Here are your active sales</a>
 
 </p>
 
 
 <p>
 <h3>Are you a buyer?</h3>
-"Link here"
+<a href="buyerpage.php">Here are your active purchases</a>
 
 </p>
 
 <p>
-Logout options here
+<h3>Logout </h3>
+<a href="index.php">Click here</a>
+
 </p>
 
 
