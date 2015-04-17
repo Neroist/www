@@ -10,9 +10,9 @@ $driverErr=$driverID="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if ($ema=empty($_POST["driverID"])) {
    #if empty($_POST["name"]) {
-    $driverErr = "DriverID is required";
+    $driverErr = "DriverID is required. Must be a number.";
   } else {
-    $driverID = $_POST["name"];}
+    $driverID = $_POST["driverID"];}
   }
 ?>
 
@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-  DriverID: <input type="text" name="driverID"></input>
+  DriverID: <input type="number" name="driverID"></input>
   <span class="error">* <?php echo $driverErr;?></span>
   <br><br>
 

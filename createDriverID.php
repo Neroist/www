@@ -1,32 +1,45 @@
 <html>
+<head>
+<?php
+include("header.php");
+?>
 <title>d2d Create DriverID</title>
 <body>
 
 <h2>Create new driver ID by clicking button below</h2>
 <?php
-$link = mysqli_connect("localhost","root","");
-$get_max_query ="SELECT max(driverID) FROM d2d.Drivers;";
-$slask = mysqli_query($link, $get_max_query);
-$tut = mysqli_fetch_row($slask);
 
-
-$bankAccErr=$bankRoutErr=$bankAcc=$bankRout="";
-
+$bankAccErr=$bankRoutErr="";
+$bankAcc=$bankRout="";
+$message = $DID"=";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if ($ema=empty($_POST["bankAcc"])) {
-     $regemailErr = "Enter bank account";
-   } else {
-     $bankAcc = $_POST["bankAcc"];
+  $acc=empty($_POST["bankAcc"]);
+  $rout=empty($_POST["bankRout"]);
+  
+  if ($acc) {
+   $bankAccErr = "Enter bank account";
+  } else {
+   $bankAcc = $_POST["bankAcc"];
+  }
+  
+  if ($rout) {
+   $bankRoutErr = "Enter bank routing number";
+  } else {
+   $bankRout = $_POST["bankRout"];
+  }
+  if($bankAcc and $bankRout){
+   $get_max_query ="SELECT max(driverID) FROM d2d.Drivers;";
+   $max_check = mysqli_query($link, $get_max_query);
+   $max_value = mysqli_fetch_row($max_check);
+   $DID = $max_value[0]+1;
+   $create_DID ="INSERT INTO d2d.Drivers SET driverID='$DID', bankacc='$bankAcc', bankrout='$bankRout';";
+   if (mysqli_query($link,$create_DID)){
+    $message = "Your new DriverID is ";
    }
-   
-   if ($pas=empty($_POST["bankRout"])) {
-     $bankRoutErr = "Enter bank routing number";
-   } else {
-     $bankRout = $_POST["bankRout"];
-   }
+  }
 }
 ?>
-<h2>REGISTRERA HÄR OM DU ÄR EN ANVÄNDARE</h2>
+<h2>REGISTRERA HÄR OM DU VILL KÖRA</h2>
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
    Bank Account: <input type="number" name="bankAcc" maxlength="14">
@@ -37,11 +50,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    <br><br>
    <input type="submit" name="submit" value="Submit"> 
 </form>
-<p>
 
-	<p>
-		<?php echo $tut[0]+1?>
-	</p>
+<?php
+echo $message,$DID;
+?>
+<br><br>
+
+<a href="driverpage.php">Back to Driver login</a>
+
+
+
 		
 </body>
 </html>
