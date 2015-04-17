@@ -29,8 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <h2>REGISTRERA HÄR OM DU ÄR EN ANVÄNDARE</h2>
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
+   Bank Account: <input type="number" name="bankAcc" maxlength="14">
    <span class="error">* <?php echo $bankAccErr;?></span>
    <br><br>
+   Bank Routing number: <input type="number" name="bankRout" maxlength="6"></input>
    <span class="error">* <?php echo $bankRoutErr;?></span>
    <br><br>
    <input type="submit" name="submit" value="Submit"> 
