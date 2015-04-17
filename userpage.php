@@ -2,7 +2,7 @@
 <title>d2d Users page</title>
 <body>
 <?php  
-
+var_dump($_POST);
 $link = mysqli_connect("localhost", "root", "");
 $email=$_POST["email"];
 $pass =$_POST["password"];

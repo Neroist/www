@@ -10,37 +10,39 @@ $link = mysqli_connect("localhost", "root","");
   <p>
       <h2>Registrera dej:</h2>
       <a href="registerpage.php">Clicky</a>
-    </p>
+  </p>
   <?php
+  
     $emailErr=$passErr = "";
     $email=$password="";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $ema=empty($_POST["email"]);
       $pas=empty($_POST["password"]);
       
-       if ($ema) {
-         $emailErr = "Email is required";
-       } else {
-         $email = $_POST["email"];
-       }
-       
-       if ($pas) {
-         $passErr = "Password is required";
-       } else {
-         $password = $_POST["password"];
-       
-       }
-       $loginquery = "SELECT * FROM d2d.Users WHERE email = '$email' and password=$password;";
-       echo $loginquery;
+      if ($ema) {
+       $emailErr = "Email is required";
+      } else {
+       $email = $_POST["email"];
+      }
+
+      if ($pas) {
+       $passErr = "Password is required";
+      } else {
+       $password = $_POST["password"];
+
+      }
+      if($email and $password){
+       $loginquery = "SELECT * FROM d2d.Users WHERE email = '$email';";
        $logincheck = mysqli_query($link, $loginquery);
-       
-       if($logincheck){
+       $userinfo = mysqli_fetch_row($logincheck);
+
+
+       if($userinfo[1]==$password){
         header("Location: userpage.php");
        }else{
-        echo "slaskmask";
+        $emailErr = "Incorrect email or password";
        }
-       echo $email;
-       echo $password;
+      }
 
     }
   ?>
