@@ -5,13 +5,13 @@
 
 <p>
 <h3>Your active purchases:</h3>
-<table>
-	<tbody>
+<table border="1">
+	
 		<?php 
 		include("getpurchases.php");
 		getpurchases($link, $_SESSION["useremail"])
 		?>
-	</tbody>
+	
 </table>
 </p>
 
