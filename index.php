@@ -18,7 +18,7 @@ $link = mysqli_connect("localhost", "root","");
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $ema=empty($_POST["email"]);
       $pas=empty($_POST["password"]);
-      
+       
       if ($ema) {
        $emailErr = "Email is required";
       } else {
