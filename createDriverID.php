@@ -11,7 +11,7 @@ include("header.php");
 
 $bankAccErr=$bankRoutErr="";
 $bankAcc=$bankRout="";
-$message = $DID"=";
+$message = $DID="";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $acc=empty($_POST["bankAcc"]);
   $rout=empty($_POST["bankRout"]);
