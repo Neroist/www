@@ -2,12 +2,9 @@
 <title>d2d Users page</title>
 <body>
 <?php  
-var_dump($_POST);
-$link = mysqli_connect("localhost", "root", "");
-$email=$_POST["email"];
-$pass =$_POST["password"];
-$check_login_query = "SELECT email, password FROM d2d.Users WHERE email=$email and password=$pass";
-$result = mysqli_query($link, $check_login_query);
+include("header.php");
+$useremail=$_SESSION["useremail"];
+echo "Your useremail is $useremail";
 
 if($result){
 	echo "mariachio";
