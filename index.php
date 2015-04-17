@@ -38,6 +38,7 @@ $link = mysqli_connect("localhost", "root","");
 
 
        if($userinfo[1]==$password){
+        $_SESSION["useremail"] = $email;
         header("Location: userpage.php");
        }else{
         $emailErr = "Incorrect email or password";
