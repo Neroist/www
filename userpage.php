@@ -6,11 +6,6 @@ include("header.php");
 $useremail=$_SESSION["useremail"];
 echo "Your useremail is $useremail";
 
-if($result){
-	echo "mariachio";
-}else{
-	echo "tutbandet";
-}
 
 ?>
 
