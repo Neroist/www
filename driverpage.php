@@ -1,5 +1,8 @@
 <html>
 <head>
+<?php 
+include("header.php");
+?>
 <title>d2d Driver page</title>
 </head>
 <body>
@@ -8,16 +11,25 @@
 $driverErr=$driverID="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if ($ema=empty($_POST["driverID"])) {
-   #if empty($_POST["name"]) {
+  $ema=empty($_POST["driverID"]);
+  if ($ema) {
     $driverErr = "DriverID is required. Must be a number.";
   } else {
-    $driverID = $_POST["driverID"];}
+    $driverID = $_POST["driverID"];
+    $loginquery = "SELECT DriverID FROM d2d.Drivers WHERE DriverID = '$driverID';"; 
+    $logincheck = mysqli_query($link, $loginquery);
+    $driverInfo = mysqli_fetch_row($logincheck);
+    if ($driverID = $driverInfo[0]) {
+      header("Location: drivermissions.php");
+    }
+    else {
+      echo "Invalid DriverID";
+    }
   }
+}
 ?>
 
-<h2>Enter here:</h2>
-
+<h2>Enter your driver IDhere:</h2>
 
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
@@ -40,3 +52,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 </body>
 </html>
+
