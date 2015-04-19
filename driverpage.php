@@ -8,6 +8,7 @@ include("header.php");
 <body>
 
 <?php
+$_SESSION["driverID"] = "";
 $driverErr=$driverID="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -20,6 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $logincheck = mysqli_query($link, $loginquery);
     $driverInfo = mysqli_fetch_row($logincheck);
     if ($driverID = $driverInfo[0]) {
+      $_SESSION["driverID"]=$driverID;
       header("Location: drivermissions.php");
     }
     else {
