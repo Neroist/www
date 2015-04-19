@@ -3,6 +3,7 @@
 <head>
 <?php 
 include("header.php");
+include("login.php");
 ?>
 <title>d2d</title>
 </head>
@@ -11,6 +12,8 @@ include("header.php");
       <h2>Registrera dej:</h2>
       <a href="registerpage.php">Clicky</a>
   </p>
+
+
   <?php
     $_SESSION["useremail"] = "";
     $emailErr=$passErr = "";
@@ -20,33 +23,31 @@ include("header.php");
       $pas=empty($_POST["password"]);
        
       if ($ema) {
-       $emailErr = "Email is required";
-      } else {
-       $email = $_POST["email"];
+        $emailErr = "Email is required";
+      } 
+      else{
+        $email = $_POST["email"];
       }
 
-      if ($pas) {
-       $passErr = "Password is required";
-      } else {
-       $password = $_POST["password"];
+      if($pas){
+        $passErr = "Password is required";
+      } 
+      else{
+        $password = $_POST["password"];
 
       }
       if($email and $password){
-       $loginquery = "SELECT * FROM d2d.Users WHERE email = '$email';";
-       $logincheck = mysqli_query($link, $loginquery);
-       $userinfo = mysqli_fetch_row($logincheck);
-
-
-       if($userinfo[1]==$password){
-        $_SESSION["useremail"] = $email;
-        header("Location: userpage.php");
-       }else{
-        $emailErr = "Incorrect email or password";
-       }
+        if (login($link, $email, $password)){
+          $_SESSION["useremail"]=$email;
+          header("Location: userpage.php");
+        }
       }
 
     }
   ?>
+
+
+
   <p>
     <h2>Redan registrerad? Titta här.</h2>
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
