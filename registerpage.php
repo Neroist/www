@@ -2,11 +2,9 @@
 <title>d2d Register page</title>
 <?php 
 	include("header.php");
+	include("registration.php");
 ?>
 <body style="background-color:#abcdef">
-
-
-
 	<?php
 		$success = "";
 		$regemailErr=$regpassErr = "";
@@ -29,8 +27,8 @@
 	     }
 		   
 	   if($regemail and $regpassword){
-	   		$newuserquery = "INSERT INTO d2d.Users SET email='$regemail', password='$regpassword';";
-	   		if(mysqli_query($link,$newuserquery)){
+	   		
+	   		if(registration($link, $regemail, $regpassword)){
 	   			$success =  "Successful registration!";
 
 	   		}
