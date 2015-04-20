@@ -1,48 +1,57 @@
 <html>
+<head>
+<?php 
+include("header.php");
+?>
 <title>d2d Driver page</title>
+</head>
 <body>
 
-<p>
-<h3>Enter here:</h3>
-
-<?php//define variables...
-$driverErr = $driverID = "";
+<?php
+$_SESSION["driverID"] = "";
+$driverErr=$driverID="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   if (empty($_POST["name"])) {
-    $driverErr = "DriverID is required";
+  $ema=empty($_POST["driverID"]);
+  if ($ema) {
+    $driverErr = "DriverID is required. Must be a number.";
   } else {
-    $driverID = $_POST["name"];
-  
-}?>
+    $driverID = $_POST["driverID"];
+    $loginquery = "SELECT DriverID FROM d2d.Drivers WHERE DriverID = '$driverID';"; 
+    $logincheck = mysqli_query($link, $loginquery);
+    $driverInfo = mysqli_fetch_row($logincheck);
+    if ($driverID = $driverInfo[0]) {
+      $_SESSION["driverID"]=$driverID;
+      header("Location: drivermissions.php");
+    }
+    else {
+      echo "Invalid DriverID";
+    }
+  }
+}
+?>
 
+<h2>Enter your driver IDhere:</h2>
 
-<!--<p><span class="error">* required field.</span></p>-->
 <p><span class="error">* required field.</span></p>
 <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
-   DriverID: <input type="text" name="driverID">
-<!--   <span class="error">* <?php echo $driverErr;?></span> -->
-   <br><br>
+  DriverID: <input type="number" name="driverID"></input>
+  <span class="error">* <?php echo $driverErr;?></span>
+  <br><br>
 
-   <input type="submit" name="submit" value="Submit"> 
+  <input type="submit" name="submit" value="Submit"> 
 </form>
+
 <p>
 
-
-
-
-
-
-Create driverID
+<a href="createDriverID.php">Create driverID</a>
 </p>
 
 
 <div>
-	<p>
-		Back to user page?
-	</p>
 	<a href="index.php">Back to main page</a>
 </div>
 
 </body>
 </html>
+

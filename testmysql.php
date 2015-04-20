@@ -90,11 +90,15 @@ mysqli_query($link,$statustable);
 // $add = "INSERT INTO d2d.Contracts (contractID, sEmail, bEmail) VALUES ('1', 'apa@slask.se','tut@slask.se');";
 // mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Drivers (driverID, bankacc, bankrout) VALUES ('1','banka1234','rout44');";
+
+//INSERT INTO Contracts (contractID, sEmail, bEmail) VALUES ('2', 'apa@slask.se','tut@slask.se');
+//INSERT INTO ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) VALUES ('2',Null,Null,Null,Null,Null,Null,Null,Null,Null);
+
+
+// $add = "INSERT INTO d2d.Drivers (driverID, bankacc, bankrout) VALUES ('1','12345678901234','123456');";
 // mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) 
-// 		VALUES ('1',Null,Null,Null,Null,'1',Null,Null,Null,Null);";
+// $add = "INSERT INTO d2d.ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) VALUES ('1',Null,Null,Null,Null,'1',Null,Null,Null,Null);";
 // mysqli_query($link,$add);
 
 ?>
