@@ -41,7 +41,7 @@ Här skall man kunna välja ett(!) uppdrag att plocka.
 
 <p>
 	<h3>Sign out and return to startpage?</h3>
-	<a href="index.php">Click here</a>
+	<a href="../index.php">Click here</a>
 </p>
 
 </body>

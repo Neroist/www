@@ -1,12 +1,13 @@
 <html>
 <title>d2d Users page</title>
 	<body>
-		<?php  
+		<?php
 			include("header.php");
 			if(!$_SESSION["useremail"]){
 				header("Location: index.php");
 			}
 			$useremail=$_SESSION["useremail"];
+
 			echo "You are logged in as $useremail";
 		?>
 		<p>

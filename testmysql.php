@@ -28,18 +28,6 @@ $buyertable = "CREATE TABLE IF NOT EXISTS d2d.Buyers (
 	address varchar(80));";
 mysqli_query($link,$buyertable);
 
-$packagetable = "CREATE TABLE IF NOT EXISTS d2d.Packages (
-	packageID int PRIMARY KEY,
-	contractID int,
-	contents varchar(40),
-	height int,
-	width int,
-	length int,
-	weight int,
-	price int,
-	FOREIGN KEY (contractID) REFERENCES Contracts(contractID));"; #IsPartOf
-mysqli_query($link,$packagetable);
-
 $drivertable = "CREATE TABLE IF NOT EXISTS d2d.Drivers (
 	driverID int PRIMARY KEY,
 	bankacc varchar(14),
@@ -64,39 +52,82 @@ $contracttable = "CREATE TABLE IF NOT EXISTS d2d.Contracts (
 	FOREIGN KEY (bEmail) REFERENCES Buyers(email));"; #Buys
 mysqli_query($link,$contracttable);
 
+$packagetable = "CREATE TABLE IF NOT EXISTS d2d.Packages (
+	packageID int PRIMARY KEY,
+	contractID int,
+	contents varchar(40),
+	height int,
+	width int,
+	length int,
+	weight int,
+	price int,
+	FOREIGN KEY (contractID) REFERENCES Contracts(contractID));"; #IsPartOf
+mysqli_query($link,$packagetable);
 
 #### FOR TESTING ####
 
-// $add = "INSERT INTO d2d.Users SET email='a@a.a', password='aaa';
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Users SET email='a@a.a', password='aaa';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Users SET email='s@s.s', password='sss';
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Users SET email='b@b.b', password='bbb';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Users SET email='d@d.d', password='ddd';
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Users SET email='c@c.c', password='ccc';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Users SET email='f@f.f', password='fff';
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Users SET email='d@d.d', password='ddd';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Sellers (email, address, bankaccount, bankrouting) VALUES ('apa@slask.se', 'borhärjaha 1234 5 tr', '1234567890abcd', 'rout01' );";
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Sellers SET email='a@a.a', address='Gata A', bankaccount='444555666',bankrouting='112233';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Buyers (email, creditcard, address) VALUES ('tut@slask.se', '0987654321123456','gatanmanborpå 45 staden 68 tr');";
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Sellers SET email='b@b.b', address='Stad B', bankaccount='456456456',bankrouting='445566';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Contracts (contractID, sEmail, bEmail) VALUES ('1', 'apa@slask.se','tut@slask.se');";
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Buyers SET email='c@c.c', address='Ort C', creditcard='11111111111234';";
+mysqli_query($link,$add);
 
+$add = "INSERT INTO d2d.Buyers SET email='d@d.d', address='Landskap D', creditcard='22222222221234';";
+mysqli_query($link,$add);
 
-//INSERT INTO Contracts (contractID, sEmail, bEmail) VALUES ('2', 'apa@slask.se','tut@slask.se');
-//INSERT INTO ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) VALUES ('2',Null,Null,Null,Null,Null,Null,Null,Null,Null);
+$add = "INSERT INTO d2d.Drivers SET driverID='1', bankacc='111234', bankrout='5678';";
+mysqli_query($link,$add);
 
+$add = "INSERT INTO d2d.Drivers SET driverID='2', bankacc='112345', bankrout='6789';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Drivers (driverID, bankacc, bankrout) VALUES ('1','12345678901234','123456');";
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Drivers SET driverID='3', bankacc='113456', bankrout='7890';";
+mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.ContractStatus (contractID, opened, signed, paidFor, dAssigned, driverID, pickedUp, droppedOff, satisfaction, settled) VALUES ('1',Null,Null,Null,Null,'1',Null,Null,Null,Null);";
-// mysqli_query($link,$add);
+$add = "INSERT INTO d2d.Contracts SET contractID='1',sEmail='a@a.a',bEmail='c@c.c',driverID='1';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Contracts SET contractID='2',sEmail='b@b.b',bEmail='c@c.c',driverID='1';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Contracts SET contractID='3',sEmail='a@a.a',bEmail='d@d.d',driverID='2';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='1', contractID='1',contents='slask';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='2', contractID='1',contents='mupp';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='3', contractID='1',contents='tut';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='4', contractID='1',contents='smurf';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='5', contractID='2',contents='hej1';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='6', contractID='2',contents='hej2';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='7', contractID='2',contents='hej3';";
+mysqli_query($link,$add);
+
 
 ?>

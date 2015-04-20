@@ -42,7 +42,6 @@ include("login.php");
           header("Location: userpage.php");
         }
       }
-
     }
   ?>
 
@@ -69,7 +68,7 @@ include("login.php");
     </p>
   </p>
   	<h2>Titta här om du är en drajver</h2>
-  	<a href="driverpage.php">Click</a>
+  	<a href="driverLogin.php">Click</a>
   </p>
 </body>
 </html>
