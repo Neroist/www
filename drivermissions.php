@@ -3,7 +3,7 @@
 <?php 
 include("header.php");
 include("getMissions.php");
-include("availableMissions.php");
+include("getAvailableMissions.php");
 $driverID = $_SESSION["driverID"];
 echo "You are logged in as driver number $driverID";
 ?>
@@ -26,7 +26,7 @@ echo "You are logged in as driver number $driverID";
 <table>
 	<tbody>
 		<?php 
-		availableMissions($link, $driverID);
+		getAvailableMissions($link, $driverID);
 		?>
 	</tbody>
 </table>

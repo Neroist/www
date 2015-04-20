@@ -1,5 +1,5 @@
 <?php
-function availableMissions($link, $driverID){
+function getAvailableMissions($link, $driverID){
 $availableQuery = "SELECT * FROM d2d.ContractStatus WHERE driverID IS NULL;";
 $result = mysqli_query($link, $availableQuery);
 
@@ -28,6 +28,8 @@ if($result){
 			echo "<td>$resultRow[0]</td>"; #Contract ID
 			echo "<td>$sellerRow[1]</td>"; #Seller Address
 			echo "<td>$buyerRow[2]</td>"; #Buyer Adress
+			echo '<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> ';
+			echo '</form>';
 			#echo "<td>$packagesRow[0]</td>"; #Amount of packages
 			echo "</tr>";
 

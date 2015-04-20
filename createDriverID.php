@@ -2,6 +2,7 @@
 <head>
 <?php
 include("header.php");
+include("getavailablemissions.php");
 ?>
 <title>d2d Create DriverID</title>
 <body>
@@ -57,7 +58,6 @@ echo $message,$DID;
 <br><br>
 
 <a href="driverpage.php">Back to Driver login</a>
-
 
 
 		
