@@ -9,12 +9,12 @@ $dbase = "CREATE DATABASE d2d;";
 mysqli_query($link,$dbase);
 
 
-$usertable = "CREATE TABLE d2d.Users (
+$usertable = "CREATE TABLE IF NOT EXISTS d2d.Users (
 	email varchar(40) PRIMARY KEY,
 	password varchar(15));";
 mysqli_query($link,$usertable);
 
-$sellertable = "CREATE TABLE d2d.Sellers (
+$sellertable = "CREATE TABLE IF NOT EXISTS d2d.Sellers (
 	email varchar(40) PRIMARY KEY,
 	address varchar(80),
 	bankaccount varchar(14),
@@ -22,13 +22,13 @@ $sellertable = "CREATE TABLE d2d.Sellers (
 	FOREIGN KEY (email) REFERENCES Users(email));"; #Isa
 mysqli_query($link,$sellertable);
 
-$buyertable = "CREATE TABLE d2d.Buyers (
+$buyertable = "CREATE TABLE IF NOT EXISTS d2d.Buyers (
 	email varchar(40) PRIMARY KEY, #(Zero or one) to (zero or one)
 	creditcard char(16),
-	address varchar(80);";
+	address varchar(80));";
 mysqli_query($link,$buyertable);
 
-$packagetable = "CREATE TABLE d2d.Packages (
+$packagetable = "CREATE TABLE IF NOT EXISTS d2d.Packages (
 	packageID int PRIMARY KEY,
 	contractID int,
 	contents varchar(40),
@@ -40,13 +40,13 @@ $packagetable = "CREATE TABLE d2d.Packages (
 	FOREIGN KEY (contractID) REFERENCES Contracts(contractID));"; #IsPartOf
 mysqli_query($link,$packagetable);
 
-$drivertable = "CREATE TABLE d2d.Drivers (
+$drivertable = "CREATE TABLE IF NOT EXISTS d2d.Drivers (
 	driverID int PRIMARY KEY,
 	bankacc varchar(14),
 	bankrout varchar(6));";
 mysqli_query($link,$drivertable);
 
-$contracttable = "CREATE TABLE d2d.Contracts (
+$contracttable = "CREATE TABLE IF NOT EXISTS d2d.Contracts (
 	contractID int PRIMARY KEY,
 	sEmail varchar(40),
 	bEmail varchar(40),
