@@ -23,19 +23,10 @@ $sellertable = "CREATE TABLE d2d.Sellers (
 mysqli_query($link,$sellertable);
 
 $buyertable = "CREATE TABLE d2d.Buyers (
-	email varchar(40) PRIMARY KEY,
+	email varchar(40) PRIMARY KEY, #(Zero or one) to (zero or one)
 	creditcard char(16),
-	address varchar(80),
-	FOREIGN KEY (email) REFERENCES Users(email));"; #Isa
+	address varchar(80);";
 mysqli_query($link,$buyertable);
-
-$contracttable = "CREATE TABLE d2d.Contracts (
-	contractID int PRIMARY KEY,
-	sEmail varchar(40),
-	bEmail varchar(40),
-	FOREIGN KEY (sEmail) REFERENCES Sellers(email), #Sells
-	FOREIGN KEY (bEmail) REFERENCES Buyers(email));"; #Buys
-mysqli_query($link,$contracttable);
 
 $packagetable = "CREATE TABLE d2d.Packages (
 	packageID int PRIMARY KEY,
@@ -55,30 +46,37 @@ $drivertable = "CREATE TABLE d2d.Drivers (
 	bankrout varchar(6));";
 mysqli_query($link,$drivertable);
 
-$statustable = "CREATE TABLE d2d.ContractStatus (
+$contracttable = "CREATE TABLE d2d.Contracts (
 	contractID int PRIMARY KEY,
+	sEmail varchar(40),
+	bEmail varchar(40),
 	opened datetime,
 	signed datetime,
 	paidFor datetime,
 	dAssigned datetime,
-	driverID int, #Foreign key? #HasContract, Nullproblem
+	driverID int,
 	pickedUp datetime,
 	droppedOff datetime,
 	satisfaction int(1),
 	settled datetime,
-	FOREIGN KEY (contractID) REFERENCES Contracts(contractID), #HasStatus
-	FOREIGN KEY (driverID) REFERENCES Drivers(driverID));"; #HasContract
-mysqli_query($link,$statustable);
-
-
+	FOREIGN KEY (driverID) REFERENCES Drivers(driverID), #HasContract
+	FOREIGN KEY (sEmail) REFERENCES Sellers(email), #Sells
+	FOREIGN KEY (bEmail) REFERENCES Buyers(email));"; #Buys
+mysqli_query($link,$contracttable);
 
 
 #### FOR TESTING ####
 
-// $add = "INSERT INTO d2d.Users (email, password) VALUES ('apa@slask.se', 'apan');";
+// $add = "INSERT INTO d2d.Users SET email='a@a.a', password='aaa';
 // mysqli_query($link,$add);
 
-// $add = "INSERT INTO d2d.Users (email, password) VALUES ('tut@slask.se', 'tutet');";
+// $add = "INSERT INTO d2d.Users SET email='s@s.s', password='sss';
+// mysqli_query($link,$add);
+
+// $add = "INSERT INTO d2d.Users SET email='d@d.d', password='ddd';
+// mysqli_query($link,$add);
+
+// $add = "INSERT INTO d2d.Users SET email='f@f.f', password='fff';
 // mysqli_query($link,$add);
 
 // $add = "INSERT INTO d2d.Sellers (email, address, bankaccount, bankrouting) VALUES ('apa@slask.se', 'borhärjaha 1234 5 tr', '1234567890abcd', 'rout01' );";
