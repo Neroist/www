@@ -1,8 +1,8 @@
 <html>
 <head>
 <?php
-include("../functions/header.php");
-include("../functions/getavailablemissions.php");
+include("header.php");
+include("getavailablemissions.php");
 ?>
 <title>d2d Create DriverID</title>
 <body>

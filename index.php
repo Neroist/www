@@ -2,8 +2,8 @@
 <html>
 <head>
 <?php 
-include("functions/header.php");
-include("functions/login.php");
+include("header.php");
+include("login.php");
 ?>
 <title>d2d</title>
 </head>
@@ -15,7 +15,6 @@ include("functions/login.php");
 
 
   <?php
-  var_dump($_SESSION);
     $_SESSION["useremail"] = "";
     $emailErr=$passErr = "";
     $email=$password="";
@@ -39,9 +38,8 @@ include("functions/login.php");
       }
       if($email and $password){
         if (login($link, $email, $password)){
-          $_SESSION["driverID"]="tutak";
           $_SESSION["useremail"]=$email;
-          header("Location: userpages/userpage.php");
+          header("Location: userpage.php");
         }
       }
     }
@@ -70,7 +68,7 @@ include("functions/login.php");
     </p>
   </p>
   	<h2>Titta här om du är en drajver</h2>
-  	<a href="driverpage.php">Click</a>
+  	<a href="driverLogin.php">Click</a>
   </p>
 </body>
 </html>

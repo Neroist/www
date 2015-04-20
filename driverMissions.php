@@ -1,9 +1,9 @@
 <html>
 <title>d2d Drivers page</title>
 <?php 
-include("../functions/header.php");
-include("../functions/getMissions.php");
-include("../functions/getAvailableMissions.php");
+include("header.php");
+include("getMissions.php");
+include("getAvailableMissions.php");
 $driverID = $_SESSION["driverID"];
 echo "You are logged in as driver number $driverID";
 ?>

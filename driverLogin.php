@@ -1,7 +1,7 @@
 <html>
 <head>
 <?php 
-include("../functions/header.php");
+include("header.php");
 ?>
 <title>d2d Driver page</title>
 </head>
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $driverInfo = mysqli_fetch_row($logincheck);
     if ($driverID = $driverInfo[0]) {
       $_SESSION["driverID"]=$driverID;
-      header("Location: driverpages/drivermissions.php");
+      header("Location: drivermissions.php");
     }
     else {
       echo "Invalid DriverID";
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 <div>
-	<a href="../index.php">Back to main page</a>
+	<a href="index.php">Back to main page</a>
 </div>
 
 </body>
