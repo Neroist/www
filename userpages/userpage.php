@@ -1,12 +1,15 @@
 <html>
 <title>d2d Users page</title>
 	<body>
-		<?php  
+		<?php
+			$_SESSION["driverID"]="tutak";  
 			include("header.php");
+			$_SESSION["driverID"]="slask";
 			if(!$_SESSION["useremail"]){
-				header("Location: index.php");
+				header("Location: ../index.php");
 			}
 			$useremail=$_SESSION["useremail"];
+
 			echo "You are logged in as $useremail";
 		?>
 		<p>

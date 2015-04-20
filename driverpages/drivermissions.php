@@ -1,9 +1,9 @@
 <html>
 <title>d2d Drivers page</title>
 <?php 
-include("header.php");
-include("getMissions.php");
-include("getAvailableMissions.php");
+include("../functions/header.php");
+include("../functions/getMissions.php");
+include("../functions/getAvailableMissions.php");
 $driverID = $_SESSION["driverID"];
 echo "You are logged in as driver number $driverID";
 ?>
@@ -41,7 +41,7 @@ Här skall man kunna välja ett(!) uppdrag att plocka.
 
 <p>
 	<h3>Sign out and return to startpage?</h3>
-	<a href="index.php">Click here</a>
+	<a href="../index.php">Click here</a>
 </p>
 
 </body>
