@@ -1,7 +1,7 @@
 <script language="javascript"> 
-function toggle() {
-	var ele = document.getElementById("toggleText");
-	var text = document.getElementById("displayText");
+function toggle(contractID) {
+	var ele = document.getElementById("toggleText "+contractID);
+	var text = document.getElementById("displayText "+contractID);
 	if(ele.style.display == "block") {
     		ele.style.display = "none";
 		text.innerHTML = "show";
@@ -17,7 +17,7 @@ function getpackages($link, $contractID){
 	$get_package_query = "SELECT * FROM d2d.Packages WHERE contractID=$contractID;";
 	$result = mysqli_query($link, $get_package_query);
 	
-	echo "<a id=\"displayText\" href=\"javascript:toggle();\">show</a>";
+	echo "<a id=\"displayText $contractID\" href=\"javascript:toggle($contractID);\">show</a>";
 	
 	$tableconts = "<table border=\"1\"><th>PackageID</th>
 	<th>Contents</th>
@@ -40,7 +40,7 @@ function getpackages($link, $contractID){
 		</tr>";	
 	}
 	$tableconts.= "</table>";
-	echo "<div id=\"toggleText\" style=\"display: none\">$tableconts</div>"; 
+	echo "<div id=\"toggleText $contractID\" style=\"display: none\">$tableconts</div>"; 
 	
 }
 ?>
