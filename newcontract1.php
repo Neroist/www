@@ -2,9 +2,13 @@
 <?php 
 include("header.php");
 include("insertseller.php");
+include("generatecontract.php");
 $formError= "";
 $addErr=$brErr=$bnErr="";
 $banknumber=$bankrouting=$address="";
+if(empty($_SESSION["contractID"])){
+  $_SESSION["contractID"]=generate_contract($link, $_SESSION["useremail"]);
+}
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $address_empty=empty($_POST["address"]);
       $bankrouting_empty=empty($_POST["bankrouting"]);
