@@ -1,6 +1,7 @@
 <?php 
 function getMissions($link, $driverID){
-$missionsQuery = "SELECT * FROM d2d.ContractStatus WHERE driverID='$driverID';";
+
+$missionsQuery = "SELECT * FROM d2d.Contracts WHERE driverID='$driverID';";
 $result = mysqli_query($link, $missionsQuery);
 
 if($result){

@@ -1,14 +1,16 @@
 <?php
+#include("assignDriver.php");
 function getAvailableMissions($link, $driverID){
-$availableQuery = "SELECT * FROM d2d.ContractStatus WHERE driverID IS NULL;";
+$availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL;";
 $result = mysqli_query($link, $availableQuery);
-
+#$chosen = $_POST["submitMission"];
+#assignDriver($link,$driverID,$chosen);
+#echo $_SESSION["submitMission"];
 if($result){
 	if(!($result->num_rows ===0)){
 		echo "<th>Contract ID </th>";
 		echo "<th>Sellers address</th>";
 		echo "<th>Buyers address</th>";
-		#echo "<th>Number of packages</th>";
 		while($resultRow =mysqli_fetch_row($result)){
 			$contractQuery = "SELECT * FROM d2d.Contracts WHERE contractID ='$resultRow[0]';";
 			$contract = mysqli_query($link,$contractQuery);
@@ -19,22 +21,22 @@ if($result){
 			$buyerQuery ="SELECT * FROM d2d.Buyers WHERE email = '$contractRow[2]';";
 			$buyer = mysqli_query($link,$buyerQuery);
 			$buyerRow = mysqli_fetch_row($buyer);
-			#$packagesQuery = "SELECT * FROM d2d.Packages WHERE contractID = '$contractRow[0];";
-			#$packages = mysqli_query($link,$packagesQuery);
-			#$numPack = mysqli_num_rows($packages);
-			#$packageslask = mysqli_num_rows ($packages);
-			#$packagesRow = mysqli_fetch_row($packages);
+
+			$CID = $resultRow[0];
 			echo "<tr>";
-			echo "<td>$resultRow[0]</td>"; #Contract ID
+			?>
+			<td><form method="post">
+			<input type="submit" name="submitMission" value="<?php echo $CID;?>">
+			</form></td>
+			<?php
+			#echo "<td>$CID</td>"; #Contract ID
 			echo "<td>$sellerRow[1]</td>"; #Seller Address
 			echo "<td>$buyerRow[2]</td>"; #Buyer Adress
-			#echo '<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?  >"> ';
-			#echo '</form>';
-			#echo "<td>$packagesRow[0]</td>"; #Amount of packages
 			echo "</tr>";
 
 		}
 	}
+		else echo "No driving missions are available at this time.";
 }
 }
 ?>

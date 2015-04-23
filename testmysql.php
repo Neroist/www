@@ -47,6 +47,7 @@ $contracttable = "CREATE TABLE IF NOT EXISTS d2d.Contracts (
 	droppedOff datetime,
 	satisfaction int(1),
 	settled datetime,
+	shipPrice int,
 	FOREIGN KEY (driverID) REFERENCES Drivers(driverID), #HasContract
 	FOREIGN KEY (sEmail) REFERENCES Sellers(email), #Sells
 	FOREIGN KEY (bEmail) REFERENCES Buyers(email));"; #Buys
@@ -129,5 +130,22 @@ mysqli_query($link,$add);
 $add = "INSERT INTO d2d.Packages SET packageID='7', contractID='2',contents='hej3';";
 mysqli_query($link,$add);
 
+$add = "INSERT INTO d2d.Contracts SET contractID='4',sEmail='a@a.a',bEmail='d@d.d';"; #No driver assigned
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Contracts SET contractID='5',sEmail='a@a.a',bEmail='d@d.d';"; #No driver assigned
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='8', contractID='4',contents='hej4';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='9', contractID='4',contents='hej4';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='10', contractID='5',contents='hej5';";
+mysqli_query($link,$add);
+
+$add = "INSERT INTO d2d.Packages SET packageID='11', contractID='5',contents='hej5';";
+mysqli_query($link,$add);
 
 ?>
