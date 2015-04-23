@@ -5,7 +5,10 @@ include("header.php");
 include("getMissions.php");
 include("getAvailableMissions.php");
 $driverID = $_SESSION["driverID"];
+$_SESSION["submitMission"]= "";
+$slask = $_SESSION["submitMission"];
 echo "You are logged in as driver number $driverID";
+echo $slask;
 ?>
 <body>
 
@@ -20,21 +23,19 @@ echo "You are logged in as driver number $driverID";
 </table>
 </p>
 
-<br><br><br><br><br>
+<br>
 <p>
 <h3>Available driving missions:</h3>
 <table>
 	<tbody>
 		<?php 
 		getAvailableMissions($link, $driverID);
+		var_dump($_POST);
 		?>
 	</tbody>
 </table>
 </p>
 
-
-"A bunch of sql stuff" 
-Här skall man kunna välja ett(!) uppdrag att plocka.
 </p>
 
 
