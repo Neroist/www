@@ -19,10 +19,7 @@
 			<h3>Are you a buyer?</h3>
 			<a href="buyerpage.php">Here are your active purchases</a>
 		</p>
-		<p>
-			<h3>Logout </h3>
-			<a href="index.php">Click here</a>
-		</p>
+		
 		<p>
 			<h3>New contract</h3>
 			<a href="newcontract1.php">Here</a>
@@ -30,6 +27,11 @@
 		<p>
 			<h3>Update credit card info (for buyers)</h3>
 			<a href="addcreditcard.php">Here</a>
+		</p>
+
+		<p>
+			<h3>Logout </h3>
+			<a href="index.php">Click here</a>
 		</p>
 	</body>
 </html>

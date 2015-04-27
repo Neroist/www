@@ -45,6 +45,7 @@ $contracttable = "CREATE TABLE IF NOT EXISTS d2d.Contracts (
 	driverID int,
 	pickedUp datetime,
 	droppedOff datetime,
+	confirmedDeliv datetime,
 	satisfaction int(1),
 	settled datetime,
 	shipPrice int,
@@ -98,54 +99,6 @@ $add = "INSERT INTO d2d.Drivers SET driverID='2', bankacc='112345', bankrout='67
 mysqli_query($link,$add);
 
 $add = "INSERT INTO d2d.Drivers SET driverID='3', bankacc='113456', bankrout='7890';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Contracts SET contractID='1',sEmail='a@a.a',bEmail='c@c.c',driverID='1';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Contracts SET contractID='2',sEmail='b@b.b',bEmail='c@c.c',driverID='1';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Contracts SET contractID='3',sEmail='a@a.a',bEmail='d@d.d',driverID='2';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='1', contractID='1',contents='slask';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='2', contractID='1',contents='mupp';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='3', contractID='1',contents='tut';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='4', contractID='1',contents='smurf';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='5', contractID='2',contents='hej1';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='6', contractID='2',contents='hej2';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='7', contractID='2',contents='hej3';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Contracts SET contractID='4',sEmail='a@a.a',bEmail='d@d.d';"; #No driver assigned
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Contracts SET contractID='5',sEmail='a@a.a',bEmail='d@d.d';"; #No driver assigned
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='8', contractID='4',contents='hej4';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='9', contractID='4',contents='hej4';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='10', contractID='5',contents='hej5';";
-mysqli_query($link,$add);
-
-$add = "INSERT INTO d2d.Packages SET packageID='11', contractID='5',contents='hej5';";
-mysqli_query($link,$add);
+mysqli_query($link,$add); 
 
 ?>
