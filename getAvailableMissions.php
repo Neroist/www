@@ -1,10 +1,16 @@
 <?php
-#include("assignDriver.php");
+include("assignDriver.php");
 function getAvailableMissions($link, $driverID){
 $availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL;";
 $result = mysqli_query($link, $availableQuery);
-#$chosen = $_POST["submitMission"];
-#assignDriver($link,$driverID,$chosen);
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+	$chosen = $_POST["submitMission"];
+	if ($chosen){
+		echo "chosen = ", $chosen;
+		assignDriver($link,$driverID,$chosen);
+	}
+}
+
 #echo $_SESSION["submitMission"];
 if($result){
 	if(!($result->num_rows ===0)){
