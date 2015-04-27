@@ -30,7 +30,6 @@ echo $slask;
 	<tbody>
 		<?php 
 		getAvailableMissions($link, $driverID);
-		var_dump($_POST);
 		?>
 	</tbody>
 </table>
