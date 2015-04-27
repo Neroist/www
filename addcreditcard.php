@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if (update_credit($link, $_SESSION["useremail"], $creditcard)){
           $success="You successfully updated your creditcard info.";
         }else{
-      	$success="Something went wrong.";
+      	$success="You are not registered as a buyer in any contract.";
       }
       }
     }

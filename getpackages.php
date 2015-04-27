@@ -14,6 +14,7 @@ function toggle(contractID) {
 </script>
 <?php
 function getpackages($link, $contractID){
+	
 	$get_package_query = "SELECT * FROM d2d.Packages WHERE contractID=$contractID;";
 	$result = mysqli_query($link, $get_package_query);
 	
