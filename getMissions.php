@@ -1,4 +1,5 @@
 <?php 
+include("getpackages.php");
 function getMissions($link, $driverID){
 
 $missionsQuery = "SELECT * FROM d2d.Contracts WHERE driverID='$driverID';";
@@ -11,6 +12,7 @@ if($result){
 		echo "<th>Seller email</th>";
 		echo "<th>Buyer address</th>";
 		echo "<th>Buyer email</th>";
+		echo "<th>Packages included</th>";
 		while($resultRow = mysqli_fetch_row($result)){
 			$contractQuery = "SELECT * FROM d2d.Contracts WHERE contractID ='$resultRow[0]';";
 			$contract = mysqli_query($link,$contractQuery);
@@ -27,6 +29,9 @@ if($result){
 			echo "<td>$sellerRow[0]</td>"; #Seller Email
 			echo "<td>$buyerRow[2]</td>"; #Buyer Adress
 			echo "<td>$buyerRow[0]</td>"; #Buyer Email
+			echo "<td>";
+				getpackages($link, $resultRow[0]);
+			echo "</td>";
 			echo "</tr>";
 		}
 	}

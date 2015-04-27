@@ -1,7 +1,7 @@
 <?php
 include("assignDriver.php");
 function getAvailableMissions($link, $driverID){
-$availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL;";
+$availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL AND paidFor IS NOT NULL;";
 $result = mysqli_query($link, $availableQuery);
 if ($_SERVER["REQUEST_METHOD"] == "POST"){
 	$chosen = $_POST["submitMission"];

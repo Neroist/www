@@ -14,7 +14,7 @@ echo $slask;
 
 <p>
 <h3>Your active driving missions:</h3>
-<table>
+<table border="1">
 	<tbody>
 		<?php 
 		getMissions($link, $driverID);
@@ -26,7 +26,7 @@ echo $slask;
 <br>
 <p>
 <h3>Available driving missions:</h3>
-<table>
+<table border="1">
 	<tbody>
 		<?php 
 		getAvailableMissions($link, $driverID);
