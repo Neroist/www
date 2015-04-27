@@ -2,23 +2,39 @@
 var counter = 1;
 var limit = 20;
 function addInput(divName){
-	var a = "33"+3-"4"-3+"7";
-	alert(a);
      if (counter == limit)  {
           alert("You have reached the limit of adding " + counter + " inputs");
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "Entry " + (counter + 1) + " <br><input type='text' name='myInputs[]'>";
+          newdiv.innerHTML = "Package " + (counter + 1) + " <br>   Contents:<input type='text' name='contents[]'>"+
+          "<br>   Height (cm):<input type='text' name='heights[]'>´"+
+          "<br>   Width:<input type='text' name='widths[]'>"+
+          "<br>   Length:<input type='text' name='lengths[]'>"+
+          "<br>   Weight:<input type='text' name='weights[]'>"+
+          "<br>   Price:<input type='text' name='prices[]'>;";
           document.getElementById(divName).appendChild(newdiv);
           counter++;
      }
 }
 </script>
 
-<form method="POST">
-     <div id="dynamicInput">
-          Entry 1<br><input type="text" name="myInputs[]">
+<form method="POST" action="confirmcontract.php">
+     <div id="dynamicInput" >
+          Package 1
+          <br>   Contents:<input type="text" name="contents[]">
+          <br>   Height (cm):<input type="text" name="heights[]">
+          <br>   Width:<input type="text" name="widths[]">
+          <br>   Length:<input type="text" name="lengths[]">
+          <br>   Weight:<input type="text" name="weights[]">
+          <br>   Price:<input type="text" name="prices[]">
      </div>
-     <input type="button" value="Add another text input" onClick="addInput('dynamicInput');">
+     <input type="button" value="Add another package to contract" onClick="addInput('dynamicInput');">
+     <input type="submit" name="submit" value="Confirm packages">
 </form>
+
+
+<?php 
+     include("header.php");
+     var_dump($_SESSION); 
+     echo htmlspecialchars($_SERVER["PHP_SELF"]);?>

@@ -2,6 +2,7 @@
 <?php 
 include("header.php");
 include("insertbuyer.php");
+include("buyertocontract.php");
 $formError= "";
 $addErr=$emailErr="";
 $bEmail=$bAddress="";
@@ -27,9 +28,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if($bEmail and $bAddress){
         
-          if(insert_buyer($link, $_SESSION["useremail"], $bankrouting, $banknumber, $address)){
+          if(insert_buyer($link, $bEmail, $bAddress) and buyer_to_contract($link, $bEmail, $_SESSION["contractID"])){
 
-          	header("Location: newcontract2.php");
+          	header("Location: newcontract3.php");
         }else{
         	$formError = "Something went wrong, try again.";
         }
@@ -40,10 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <body>
 <h2>Enter buyer's info here:</h2>
-
-
-
-
 
 <p><span class="error">* required field.</span></p>
 	<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> 
