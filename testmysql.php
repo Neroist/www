@@ -66,6 +66,8 @@ $packagetable = "CREATE TABLE IF NOT EXISTS d2d.Packages (
 	FOREIGN KEY (contractID) REFERENCES Contracts(contractID));"; #IsPartOf
 mysqli_query($link,$packagetable);
 
+
+
 #### FOR TESTING ####
 
 $add = "INSERT INTO d2d.Users SET email='a@a.a', password='aaa';";
