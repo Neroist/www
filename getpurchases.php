@@ -21,6 +21,7 @@ function getpurchases($link, $useremail){
 						echo"<th>Contract ID</th>";
 						echo"<th>Seller's email</th>";
 						echo"<th>Packages</th>";
+						echo"<th>ShipPrice</th>";
 						echo"<th>Signed</th>";
 						echo"<th>Payment</th>";
 						echo"<th>Driver</th>";
@@ -28,33 +29,34 @@ function getpurchases($link, $useremail){
 						echo"<th>Dropped off</th>";
 						echo"<th>Confirm deliv</th>";
 						echo"<th>Settled</th>";
-						
+						echo"<th>Satisfaction</th>";
 						
 						while($row = mysqli_fetch_assoc($result)){
-							$query = "SELECT * FROM d2d.Contracts WHERE contractID = $row[contractID];";
-							$row2 = mysqli_fetch_assoc(mysqli_query($link, $query));
-							$is_signed = !is_null($row2["signed"]);
+							
+							$is_signed = !is_null($row["signed"]);
 							if($is_signed){
-								$is_signed = !is_null($row2["signed"]);
-								$is_paid = !is_null($row2["paidFor"]);
-								$has_driver =!is_null($row2["dAssigned"]);
-								$picked_up =!is_null($row2["pickedUp"]);
-								$dropped_off = !is_null($row2["droppedOff"]);
-								$confirmed_deliv =!is_null($row2["confirmedDeliv"]);
-								$is_settled =!is_null($row2["settled"]);
+								$shipPrice=$row["shipPrice"];
+								$is_paid = !is_null($row["paidFor"]);
+								$has_driver =!is_null($row["dAssigned"]);
+								$picked_up =!is_null($row["pickedUp"]);
+								$dropped_off = !is_null($row["droppedOff"]);
+								$confirmed_deliv =!is_null($row["confirmedDeliv"]);
+								$is_settled =!is_null($row["settled"]);
+								$has_satisfaction = !is_null($row["satisfaction"]);
 								echo "<tr>";
 									echo "<td>$row[contractID]</td>";
 									echo "<td>$row[sEmail]</td>";
 									echo "<td>";
 										getpackages($link, $row["contractID"]);
 									echo "</td>";
+									echo "<td>$shipPrice</td>";
 									if(!$is_signed){
 										echo "-";
 									}else{
 										echo"<td>Signed at $row[signed]!</td>";
 									}
 									if(!$is_paid){
-										echo "<td><form method='POST'> <button type='submit' name='paid' value='$row[contractID]'>Pay</button></td>";
+										echo "<td><form method='POST'> <button type='submit' name='paid' value='$row[contractID]'>Pay</button></form></td>";
 									}else{
 										echo"<td>Paid for at $row[paidFor]!</td>";
 									}
@@ -75,19 +77,30 @@ function getpurchases($link, $useremail){
 									}
 									if(!$confirmed_deliv){
 										if($dropped_off){
-											echo "<td><form method='POST'> <button type='submit' name='confirm' value='$row[contractID]'>Pay</button></td>";
+											echo "<td><form method='POST'> <input type='hidden' name='confirm' value='$row[contractID]'>Cofirm delivery and satisfaction grade".
+											"<input type='number' name='satisfaction' min='1' max='5'>".
+											"<input type='submit' name='submit' value='submit'>".
+											"<input type='hidden' name='satisfactionID' value='$row[contractID]'></form></td>";
 										}
 										else{
 											echo "<td>-</td>";
 										}
 									}else{
-										echo"<td>Paid for at $row[paidFor]!</td>";
+										echo"<td>Confirmed at $row[confirmedDeliv]!</td>";
 									}
 									if(!$is_settled){
 										echo "<td>-</td>";
 									}else{
 										echo"<td>Settled at $row[settled]!</td>";
 									}
+									if(!$has_satisfaction){
+										echo "<td>-</td>";
+										}
+									else{
+										echo "<td>$row[satisfaction]</td>";
+									}
+											
+								
 
 
 								echo "</tr>";
