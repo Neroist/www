@@ -10,6 +10,7 @@ if($result){
 		echo "<th>Contract ID </th>";
 		echo "<th>Sellers address</th>";
 		echo "<th>Buyers address</th>";
+		echo "<th>Packages</th>";
 		while($resultRow =mysqli_fetch_row($result)){
 			$contractQuery = "SELECT * FROM d2d.Contracts WHERE contractID ='$resultRow[0]';";
 			$contract = mysqli_query($link,$contractQuery);
@@ -24,13 +25,16 @@ if($result){
 			$CID = $resultRow[0];
 			echo "<tr>";
 			?>
-			<td><form method="post">
-			<input type="button" name="Choose mission" value="<?php echo $CID;?>">
+			<td><form method="POST">
+			<button type="submit" name="submitMission" value="<?php echo $CID;?>">Choose mission</button>
 			</form></td>
 			<?php
 			#echo "<td>$CID</td>"; #Contract ID
 			echo "<td>$sellerRow[1]</td>"; #Seller Address
 			echo "<td>$buyerRow[2]</td>"; #Buyer Adress
+			echo "<td>";
+				getpackages($link, $resultRow[0]);
+			echo "</td>";
 			echo "</tr>";
 
 		}

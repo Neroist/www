@@ -6,6 +6,7 @@ include("getMissions.php");
 include("getAvailableMissions.php");
 include("updatePickup.php");
 include("updateDroppedOff.php");
+include("getpackages.php");
 $driverID = $_SESSION["driverID"];
 $_SESSION["submitMission"]= "";
 $slask = $_SESSION["submitMission"];

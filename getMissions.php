@@ -1,5 +1,4 @@
 <?php 
-include("getpackages.php");
 function getMissions($link, $driverID){
 
 $missionsQuery = "SELECT * FROM d2d.Contracts WHERE driverID='$driverID';";
@@ -13,7 +12,7 @@ if($result){
 		//echo"<th>ShipPrice</th>";
 		//echo"<th>Signed</th>";
 		//echo"<th>Payment</th>";
-		echo"<th>Mission taken (DRIVER)</th>";
+		echo"<th>Mission taken</th>";
 		echo"<th>Picked up</th>";
 		echo"<th>Dropped off</th>";
 		echo"<th>Confirm deliv</th>";
