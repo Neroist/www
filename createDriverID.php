@@ -4,7 +4,7 @@
 include("header.php");
 ?>
 <title>d2d Create DriverID</title>
-<body>
+<body style="background-color:#abcdef"> 
 
 <h2>Create new driver ID by clicking button below</h2>
 <?php
@@ -28,10 +28,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
    $bankRout = $_POST["bankRout"];
   }
   if($bankAcc and $bankRout){
-   $get_max_query ="SELECT max(driverID) FROM d2d.Drivers;";
+   $get_max_query ="SELECT ifnull(max(driverID),0) FROM d2d.Drivers;";
    $max_check = mysqli_query($link, $get_max_query);
+   
    $max_value = mysqli_fetch_row($max_check);
    $DID = $max_value[0]+1;
+   
    $create_DID ="INSERT INTO d2d.Drivers SET driverID='$DID', bankacc='$bankAcc', bankrout='$bankRout';";
    if (mysqli_query($link,$create_DID)){
     $message = "Your new DriverID is ";

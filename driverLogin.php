@@ -5,7 +5,7 @@ include("header.php");
 ?>
 <title>d2d Driver page</title>
 </head>
-<body>
+<body style="background-color:#abcdef"> 
 
 <?php
 $_SESSION["driverID"] = "";

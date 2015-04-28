@@ -25,7 +25,7 @@ if($result){
 			echo "<tr>";
 			?>
 			<td><form method="post">
-			<input type="submit" name="submitMission" value="<?php echo $CID;?>">
+			<input type="button" name="Choose mission" value="<?php echo $CID;?>">
 			</form></td>
 			<?php
 			#echo "<td>$CID</td>"; #Contract ID

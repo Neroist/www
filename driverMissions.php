@@ -35,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 }
 //var_dump($_POST);
 ?>
-<body>
+<body style="background-color:#abcdef"> 
 
 <p>
 <h3>Your active driving missions:</h3>
