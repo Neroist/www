@@ -8,7 +8,7 @@ function getsales($link, $useremail){
 	if($result){
 		if(!($result->num_rows===0)){
 			echo"<th>Contract ID</th>";
-			echo"<th>Seller's email</th>";
+			echo"<th>Buyer's email</th>";
 			echo"<th>Packages</th>";
 			echo"<th>ShipPrice</th>";
 			echo"<th>Signed</th>";

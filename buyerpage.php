@@ -20,6 +20,7 @@
 				header("Location: $_SERVER[PHP_SELF]");
 			}
 			$empty_confirmed = empty($_POST["confirm"]);
+			$empty_satisfaction = empty($_POST["satisfaction"]);
 			if(!$empty_confirmed and !$empty_satisfaction){
 				add_satisfaction($link, $_POST["satisfactionID"], $_POST["satisfaction"]);
 				confirm_deliv($link, $_POST["confirm"]);
@@ -27,7 +28,7 @@
 				$_POST["satisfaction"]="";
 				header("Location: $_SERVER[PHP_SELF]");
 			}
-			$empty_satisfaction = empty($_POST["satisfaction"]);
+			
 			
 		}
 		var_dump($_POST);
