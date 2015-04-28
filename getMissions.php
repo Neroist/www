@@ -4,14 +4,12 @@ function getMissions($link, $driverID){
 $missionsQuery = "SELECT * FROM d2d.Contracts WHERE driverID='$driverID';";
 $result = mysqli_query($link, $missionsQuery);
 
+
 if($result){
 	if(!($result->num_rows ===0)){
 		echo"<th>Contract ID</th>";
 		echo"<th>Seller's email</th>";
 		echo"<th>Packages</th>";
-		//echo"<th>ShipPrice</th>";
-		//echo"<th>Signed</th>";
-		//echo"<th>Payment</th>";
 		echo"<th>Mission taken</th>";
 		echo"<th>Picked up</th>";
 		echo"<th>Dropped off</th>";
