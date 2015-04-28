@@ -1,10 +1,9 @@
 <?php
-#include("assignDriver.php");
+include("assignDriver.php");
 function getAvailableMissions($link, $driverID){
-$availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL;";
+$availableQuery = "SELECT * FROM d2d.Contracts WHERE driverID IS NULL AND NOT paidFor IS NULL;";
 $result = mysqli_query($link, $availableQuery);
-#$chosen = $_POST["submitMission"];
-#assignDriver($link,$driverID,$chosen);
+
 #echo $_SESSION["submitMission"];
 if($result){
 	if(!($result->num_rows ===0)){
@@ -26,7 +25,7 @@ if($result){
 			echo "<tr>";
 			?>
 			<td><form method="post">
-			<input type="submit" name="submitMission" value="<?php echo $CID;?>">
+			<input type="button" name="Choose mission" value="<?php echo $CID;?>">
 			</form></td>
 			<?php
 			#echo "<td>$CID</td>"; #Contract ID
