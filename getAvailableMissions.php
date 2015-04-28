@@ -7,7 +7,7 @@ $result = mysqli_query($link, $availableQuery);
 #echo $_SESSION["submitMission"];
 if($result){
 	if(!($result->num_rows ===0)){
-		echo "<th>Contract ID </th>";
+		echo "<th> </th>";
 		echo "<th>Sellers address</th>";
 		echo "<th>Buyers address</th>";
 		echo "<th>Packages</th>";
