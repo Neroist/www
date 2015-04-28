@@ -7,6 +7,7 @@
 				header("Location: index.php");
 			}
 			$useremail=$_SESSION["useremail"];
+			$_SESSION["driverID"]="";
 			$_SESSION["contractID"]="";
 
 			echo "You are logged in as $useremail";

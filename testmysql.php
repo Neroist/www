@@ -66,41 +66,58 @@ $packagetable = "CREATE TABLE IF NOT EXISTS d2d.Packages (
 	FOREIGN KEY (contractID) REFERENCES Contracts(contractID));"; #IsPartOf
 mysqli_query($link,$packagetable);
 
+$eventQuery ="CREATE EVENT d2d.settling ON SCHEDULE EVERY 40 SECOND DO UPDATE d2d.Contracts SET Settled=now() 
+WHERE NOT ConfirmedDeliv IS NULL AND Settled IS NULL;";
+mysqli_query($link,$eventQuery);
+$triggerQuery="CREATE TRIGGER d2d.dAssignTime BEFORE UPDATE ON d2d.Contracts
+    FOR EACH ROW
+     BEGIN
+         IF NOT NEW.driverID IS NULL AND OLD.driverID IS NULL THEN
+             SET NEW.dAssigned = now();
+         END IF;
+     END;";
+mysqli_query($link,$triggerQuery);
+
 
 
 #### FOR TESTING ####
 
-$add = "INSERT INTO d2d.Users SET email='a@a.a', password='aaa';";
-mysqli_query($link,$add);
+ $add = "INSERT INTO d2d.Users SET email='a@a.a', password='a';";
+ mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Users SET email='b@b.b', password='bbb';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Users SET email='b@b.b', password='bbb';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Users SET email='c@c.c', password='ccc';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Users SET email='c@c.c', password='ccc';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Users SET email='d@d.d', password='ddd';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Users SET email='d@d.d', password='ddd';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Sellers SET email='a@a.a', address='Gata A', bankaccount='444555666',bankrouting='112233';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Sellers SET email='a@a.a', address='Gata A', bankaccount='444555666',bankrouting='112233';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Sellers SET email='b@b.b', address='Stad B', bankaccount='456456456',bankrouting='445566';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Sellers SET email='b@b.b', address='Stad B', bankaccount='456456456',bankrouting='445566';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Buyers SET email='c@c.c', address='Ort C', creditcard='11111111111234';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Buyers SET email='c@c.c', address='Ort C', creditcard='11111111111234';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Buyers SET email='d@d.d', address='Landskap D', creditcard='22222222221234';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Buyers SET email='d@d.d', address='Landskap D', creditcard='22222222221234';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Drivers SET driverID='1', bankacc='111234', bankrout='5678';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Drivers SET driverID='1', bankacc='111234', bankrout='5678';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Drivers SET driverID='2', bankacc='112345', bankrout='6789';";
-mysqli_query($link,$add);
+// $add = "INSERT INTO d2d.Drivers SET driverID='2', bankacc='112345', bankrout='6789';";
+// mysqli_query($link,$add);
 
-$add = "INSERT INTO d2d.Drivers SET driverID='3', bankacc='113456', bankrout='7890';";
-mysqli_query($link,$add); 
+// $add = "INSERT INTO d2d.Drivers SET driverID='3', bankacc='113456', bankrout='7890';";
+// mysqli_query($link,$add); 
+
+// $add ="INSERT INTO d2d.Contracts SET contractID='1',semail='a@a.a',bemail='c@c.c',opened=now(),signed=now(),paidFor=now(),dAssigned=now(),
+// 		driverID='1',pickedUp=now(),droppedOff=now(),confirmedDeliv=now(),satisfaction=1;";
+// mysqli_query($link,$add);
+
 
 ?>

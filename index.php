@@ -16,6 +16,7 @@ include("login.php");
 
   <?php
     $_SESSION["useremail"] = "";
+    $_SESSION["driverID"]="";
     $emailErr=$passErr = "";
     $email=$password="";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -3,10 +3,13 @@
 include("header.php");
 include("insertseller.php");
 include("generatecontract.php");
+include("updateSeller.php");
 $formError= "";
 $addErr=$brErr=$bnErr="";
 $banknumber=$bankrouting=$address="";
-if(empty($_SESSION["contractID"])){
+
+if(empty($_SESSION["contractID"]) or !isset($_SESSION["contractID"])){
+  insert_seller($link, $_SESSION["useremail"]);
   $_SESSION["contractID"]=generate_contract($link, $_SESSION["useremail"]);
 }
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -36,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       if($banknumber and $address and $bankrouting){
         
-          if(insert_seller($link, $_SESSION["useremail"], $bankrouting, $banknumber, $address)){
+          if(update_seller($link, $_SESSION["useremail"], $bankrouting, $banknumber, $address)){
 
           	header("Location: newcontract2.php");
         }else{
@@ -73,7 +76,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	<p>
 
 <p>
-	<?php echo $formError ?>
+	<?php echo $formError;
+  var_dump($_SESSION); 
+  ?>
 </p>
 
 
